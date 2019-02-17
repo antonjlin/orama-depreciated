@@ -1,0 +1,61 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Sign In</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.0/examples/sign-in/signin.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <body>
+        <div class="container">
+
+            <div id="div_login">
+                <h1>Login</h1>
+                <div id="message"></div>
+                <div>
+                    <input type="text" class="textbox" id="txt_uname" name="txt_uname" placeholder="Username" />
+                </div>
+                <div>
+                    <input type="password" class="textbox" id="txt_pwd" name="txt_pwd" placeholder="Password"/>
+                </div>
+                <div>
+                    <input type="button" value="Submit" name="but_submit" id="but_submit" />
+                </div>
+            </div>
+
+        </div>
+    </body>
+
+
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+                $("#but_submit").click(function(){
+                    var email = $("#txt_uname").val().trim();
+                    var password = $("#txt_pwd").val().trim();
+                    axios.post('/api/users/login', {
+                        email,
+                        password
+                      })
+                      .then(function (response) {
+                        console.log(response);
+                      })
+                      .catch(function (error) {
+                        console.log(error);
+                      });
+                });
+
+            });
+        </script>
+</html>
